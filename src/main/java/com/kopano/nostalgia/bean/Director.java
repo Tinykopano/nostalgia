@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "movie_t")
+@Table(name = "director_t")
 public class Director {
 
     @Id
