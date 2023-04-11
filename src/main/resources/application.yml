@@ -8,3 +8,6 @@ server:
   port: 10181
   servlet:
     context-path: /nostalgia
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

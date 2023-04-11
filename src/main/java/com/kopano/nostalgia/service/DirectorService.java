@@ -1,9 +1,7 @@
 package com.kopano.nostalgia.service;
 
 import com.kopano.nostalgia.bean.Director;
-import com.kopano.nostalgia.bean.Movie;
-import com.kopano.nostalgia.repository.DirectorRepository;
-import com.kopano.nostalgia.repository.MovieRepository;
+import com.kopano.nostalgia.mapper.DirectorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +11,14 @@ import java.util.List;
 public class DirectorService {
 
     @Autowired
-    private DirectorRepository directorRepository;
+    private DirectorMapper directorMapper;
 
     public List<Director> getList() {
-        return directorRepository.findAll();
+        return directorMapper.findAll();
     }
 
     public Director getDirectorById(Integer id) {
-        return directorRepository.findById(id).get();
+        return directorMapper.findById(id);
     }
 
 }
