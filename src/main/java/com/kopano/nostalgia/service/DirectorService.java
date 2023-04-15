@@ -14,11 +14,11 @@ public class DirectorService {
     private DirectorMapper directorMapper;
 
     public List<Director> getList() {
-        return directorMapper.findAll();
+        return directorMapper.selectList(null);
     }
 
     public Director getDirectorById(Integer id) {
-        return directorMapper.findById(id);
+        return directorMapper.selectById(id);
     }
 
 }

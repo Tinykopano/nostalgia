@@ -1,5 +1,6 @@
 package com.kopano.nostalgia.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kopano.nostalgia.bean.Movie;
 import com.kopano.nostalgia.bean.RankingList;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,9 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface RankingListMapper {
-    @Select("SELECT * FROM ranking_list_t")
-    List<RankingList> findAll();
+public interface RankingListMapper extends BaseMapper<RankingList> {
 
     @Select("SELECT a.* FROM movie_t a\n" +
             "    LEFT JOIN ranking_list_movie_t rlmt ON a.movie_id = rlmt.movie_id\n" +

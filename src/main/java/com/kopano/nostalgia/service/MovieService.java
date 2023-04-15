@@ -13,10 +13,10 @@ public class MovieService {
     private MovieMapper movieMapper;
 
     public List<Movie> getList() {
-        return movieMapper.findAll();
+        return movieMapper.selectList(null);
     }
 
     public Movie getMovieById(Integer id) {
-        return movieMapper.findById(id);
+        return movieMapper.selectById(id);
     }
 }
