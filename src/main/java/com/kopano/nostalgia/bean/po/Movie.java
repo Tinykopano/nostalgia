@@ -1,4 +1,4 @@
-package com.kopano.nostalgia.bean;
+package com.kopano.nostalgia.bean.po;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

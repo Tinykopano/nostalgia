@@ -1,9 +1,10 @@
 package com.kopano.nostalgia.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kopano.nostalgia.bean.dto.PageResult;
+import com.kopano.nostalgia.bean.PageResult;
+import com.kopano.nostalgia.bean.vo.MovieVo;
 import com.kopano.nostalgia.mapper.MovieMapper;
-import com.kopano.nostalgia.bean.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class MovieService {
     @Autowired
     private MovieMapper movieMapper;
 
-    public PageResult<Movie> getList(Integer pageNum, Integer pageSize) {
+    public PageResult<MovieVo> getPage(Integer pageNum, Integer pageSize, Integer rankingListId) {
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -20,18 +21,24 @@ public class MovieService {
             pageSize = 10;
         }
 
-        Page<Movie> page = new Page<>(pageNum, pageSize);
-        Page<Movie> moviePage = movieMapper.selectPage(page, null);
+        IPage<MovieVo> page = new Page<>(pageNum, pageSize);
+        IPage<MovieVo> moviePage;
+        if (rankingListId != null && rankingListId > 0) {
+            moviePage = movieMapper.selectMovieByRankingId(page, rankingListId);
+        } else {
+            moviePage = movieMapper.selectMoviePage(page);
+        }
 
-        PageResult<Movie> result = new PageResult<>();
-        result.setData(moviePage.getRecords());
+        PageResult<MovieVo> result = new PageResult<>();
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
+        result.setPages(moviePage.getRecords());
         result.setTotal(moviePage.getTotal());
         return result;
     }
 
-    public Movie getMovieById(Integer id) {
-        return movieMapper.selectById(id);
+    public MovieVo getMovieById(Integer id) {
+        return movieMapper.selectMovieById(id);
     }
+
 }

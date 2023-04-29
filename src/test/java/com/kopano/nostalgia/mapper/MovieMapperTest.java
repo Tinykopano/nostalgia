@@ -1,14 +1,13 @@
 package com.kopano.nostalgia.mapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kopano.nostalgia.bean.Movie;
+import com.kopano.nostalgia.bean.po.Movie;
+import com.kopano.nostalgia.bean.vo.MovieVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class MovieMapperTest {
@@ -26,6 +25,13 @@ public class MovieMapperTest {
         Page<Movie> page = new Page<>(1,10);
         Page<Movie> results = movieMapper.selectPage(page, null);
         results.getRecords().forEach(System.out::println);
+    }
+
+    @Test
+    public void testSelectMovieById(){
+        MovieVo results = movieMapper.selectMovieById(1);
+        System.out.println(results);
+
     }
 
 
