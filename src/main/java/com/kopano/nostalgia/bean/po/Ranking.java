@@ -7,14 +7,13 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName("director_t")
-public class Director {
+@TableName("ranking_t")
+public class Ranking {
     @TableId
-    private Integer directorId;
-    private String oriName;
-    private String chineseName;
-    private String country;
-    private Date birth;
+    private Integer rankingId;
+    private String rankingName;
+    private String description;
+    private Date releaseDate;
     private short isDelete;
     private Date createTime;
     private Date updateTime;

@@ -48,22 +48,22 @@
                dt.director_id,
                dt.chinese_name as 'director_name'
         from movie_t a
-                 left join director_t dt on a.director_id = dt.director_id
+                 LEFT JOIN director_t dt on a.director_id = dt.director_id
     </select>
 
     <select id="selectMovieByRankingId" resultMap="movieResultMap">
-        select a.movie_id,
+        SELECT a.movie_id,
                a.ori_name,
                a.chinese_name,
                a.release_date,
                dt.director_id,
-               dt.chinese_name as 'director_name',
+               dt.chinese_name AS 'director_name',
                rlmt.rank_order
         FROM movie_t a
-                 LEFT JOIN ranking_list_movie_t rlmt ON a.movie_id = rlmt.movie_id
-                 LEFT JOIN ranking_list_t rl ON rlmt.ranking_list_id = rl.list_id
-                 left join director_t dt on a.director_id = dt.director_id
-        WHERE rl.list_id = #{id}
+                 LEFT JOIN movie_ranking_t rlmt ON a.movie_id = rlmt.movie_id
+                 LEFT JOIN ranking_t rl ON rlmt.ranking_id = rl.ranking_id
+                 LEFT JOIN director_t dt ON a.director_id = dt.director_id
+        WHERE rl.ranking_id = #{id}
         ORDER BY rlmt.rank_order
     </select>
 </mapper>

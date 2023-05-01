@@ -13,7 +13,7 @@ public class MovieService {
     @Autowired
     private MovieMapper movieMapper;
 
-    public PageResult<MovieVo> getPage(Integer pageNum, Integer pageSize, Integer rankingListId) {
+    public PageResult<MovieVo> getPage(Integer pageNum, Integer pageSize, Integer rankingId) {
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -23,8 +23,8 @@ public class MovieService {
 
         IPage<MovieVo> page = new Page<>(pageNum, pageSize);
         IPage<MovieVo> moviePage;
-        if (rankingListId != null && rankingListId > 0) {
-            moviePage = movieMapper.selectMovieByRankingId(page, rankingListId);
+        if (rankingId != null && rankingId > 0) {
+            moviePage = movieMapper.selectMovieByRankingId(page, rankingId);
         } else {
             moviePage = movieMapper.selectMoviePage(page);
         }

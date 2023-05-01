@@ -17,20 +17,12 @@ public class DirectorController {
 
     @GetMapping("/directors")
     public Result<PageResult<DirectorVo>> getPage(@RequestParam(value = "pageNum", required = false) Integer pageNum,
-                                               @RequestParam(value = "pageSize", required = false) Integer pageSize) {
-        Result<PageResult<DirectorVo>> result = new Result<>();
-        result.setCode(200);
-        result.setMsg("success");
-        result.setData(directorService.getPage(pageNum, pageSize));
-        return result;
+                                                  @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        return Result.success(directorService.getPage(pageNum, pageSize));
     }
 
     @GetMapping("/director/{directorId}")
     public Result<DirectorVo> getMovieById(@PathVariable("directorId") Integer id) {
-        Result<DirectorVo> result = new Result<>();
-        result.setCode(200);
-        result.setMsg("success");
-        result.setData(directorService.getDirectorById(id));
-        return result;
+        return Result.success(directorService.getDirectorById(id));
     }
 }

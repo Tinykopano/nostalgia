@@ -15,6 +15,7 @@ public class Movie {
     private String chineseName;
     private Integer genreId;
     private Integer directorId;
+    private short isDelete;
     private Date createTime;
     private Date updateTime;
 }

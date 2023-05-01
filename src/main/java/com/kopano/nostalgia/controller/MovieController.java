@@ -18,21 +18,13 @@ public class MovieController {
     @GetMapping("/movies")
     public Result<PageResult<MovieVo>> getPage(@RequestParam(value = "pageNum", required = false) Integer pageNum,
                                                @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                               @RequestParam(value = "rankingListId", required = false) Integer rankingListId) {
-        Result<PageResult<MovieVo>> result = new Result<>();
-        result.setCode(200);
-        result.setMsg("success");
-        result.setData(movieService.getPage(pageNum, pageSize,rankingListId));
-        return result;
+                                               @RequestParam(value = "rankingId", required = false) Integer rankingId) {
+        return Result.success(movieService.getPage(pageNum, pageSize,rankingId));
     }
 
     @GetMapping("/movie/{movieId}")
     public Result<MovieVo> getMovieById(@PathVariable("movieId") Integer id) {
-        Result<MovieVo> result = new Result<>();
-        result.setCode(200);
-        result.setMsg("success");
-        result.setData(movieService.getMovieById(id));
-        return result;
+        return Result.success(movieService.getMovieById(id));
     }
 
 }

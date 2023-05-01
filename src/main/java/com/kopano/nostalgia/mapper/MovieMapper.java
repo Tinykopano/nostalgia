@@ -13,5 +13,5 @@ public interface MovieMapper extends BaseMapper<Movie> {
 
     IPage<MovieVo> selectMoviePage(IPage<MovieVo> page);
 
-    IPage<MovieVo> selectMovieByRankingId(IPage<MovieVo> page , Integer id);
+    IPage<MovieVo> selectMovieByRankingId(IPage<MovieVo> page, Integer id);
 }
