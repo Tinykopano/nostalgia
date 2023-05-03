@@ -9,23 +9,17 @@ import com.kopano.nostalgia.mapper.DirectorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class DirectorService {
 
     @Autowired
     private DirectorMapper directorMapper;
 
-    public List<Director> getList() {
-        return directorMapper.selectList(null);
-    }
-
     public DirectorVo getDirectorById(Integer id) {
         return directorMapper.selectDirectorById(id);
     }
 
-    public PageResult<DirectorVo> getPage(Integer pageNum, Integer pageSize) {
+    public PageResult<DirectorVo> getPage(Integer pageNum, Integer pageSize,String name) {
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -35,7 +29,7 @@ public class DirectorService {
 
         IPage<DirectorVo> page = new Page<>(pageNum, pageSize);
 
-        IPage<DirectorVo> directorPage = directorMapper.selectDirectorPage(page);
+        IPage<DirectorVo> directorPage = directorMapper.selectDirectorPage(page, name);
 
         PageResult<DirectorVo> result = new PageResult<>();
         result.setPageNum(pageNum);
@@ -43,5 +37,9 @@ public class DirectorService {
         result.setPages(directorPage.getRecords());
         result.setTotal(directorPage.getTotal());
         return result;
+    }
+
+    public Integer addDirector(Director director) {
+        return directorMapper.insert(director);
     }
 }

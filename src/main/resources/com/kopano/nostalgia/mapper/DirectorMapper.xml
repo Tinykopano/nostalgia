@@ -29,9 +29,13 @@
         where director_id = #{id}
     </select>
 
-    <select id="selectDirectorPage" resultMap="directorResultMap">
+    <select id="selectDirectorPage" resultMap="directorResultMap" parameterType="String">
         select director_id, ori_name, chinese_name, country, birth
         from director_t
+        where 1 = 1
+        <if test="name != null and name != ''">
+            and (ori_name like concat('%',#{name},'%') or chinese_name like concat('%',#{name},'%'))
+        </if>
     </select>
 
 

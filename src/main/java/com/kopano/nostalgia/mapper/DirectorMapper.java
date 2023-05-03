@@ -11,5 +11,5 @@ public interface DirectorMapper extends BaseMapper<Director> {
 
    DirectorVo selectDirectorById(Integer id);
 
-   IPage<DirectorVo> selectDirectorPage(IPage<DirectorVo> page);
+   IPage<DirectorVo> selectDirectorPage(IPage<DirectorVo> page, String name);
 }
